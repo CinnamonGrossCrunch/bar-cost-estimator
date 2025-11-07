@@ -141,6 +141,7 @@ export default function CostCalculatorWidget() {
 
   // Handle estimate generation
   const handleGenerateEstimate = async () => {
+    console.log('Generate estimate clicked', { isFormValid, attendees, requiresCompanyName, companyName });
     if (!isFormValid) return;
     
     setIsCalculating(true);
@@ -183,8 +184,13 @@ export default function CostCalculatorWidget() {
 
   // Reset estimate when key fields change
   useEffect(() => {
-    resetEstimate();
-  }, [orgType, serviceType, attendees, duration, companyName, resetEstimate]);
+    if (estimatedCost !== null) {
+      setEstimatedCost(null);
+    }
+    if (footerBright) {
+      setFooterBright(false);
+    }
+  }, [orgType, serviceType, attendees, duration, companyName, estimatedCost, footerBright]);
 
   // Generate duration options from 1.0 to 6.0 hours in 0.5 increments
   const durationOptions = [];
