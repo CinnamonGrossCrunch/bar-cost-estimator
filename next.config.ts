@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   outputFileTracingRoot: path.join(__dirname),
+  output: 'export',
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true
 };
 
 export default nextConfig;
