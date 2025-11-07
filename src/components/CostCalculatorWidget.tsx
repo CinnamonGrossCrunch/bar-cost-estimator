@@ -67,13 +67,13 @@ export default function CostCalculatorWidget() {
   const getBackgroundImage = () => {
     switch (orgType) {
       case 'githubInternal':
-        return '/violet cocktail.png';
+        return '/violet-cocktail.png';
       case 'externalSponsor':
-        return '/red cocktail.png';
+        return '/red-cocktail.png';
       case 'nonProfit':
         return '/greencocktail.png';
       default:
-        return '/violet cocktail.png';
+        return '/violet-cocktail.png';
     }
   };
 
