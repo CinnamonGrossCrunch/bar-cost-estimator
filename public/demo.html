@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Cost Estimate Widget - Embed Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+    .demo-section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #333;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Service Cost Estimate Widget - Embed Demo</h1>
+  
+  <div class="demo-section">
+    <h2>Method 1: Script Tag (Shadow DOM)</h2>
+    <p>Add this single line to your HTML:</p>
+    <pre><code>&lt;script src="https://your-vercel-domain.vercel.app/embed.js"&gt;&lt;/script&gt;</code></pre>
+    
+    <h3>Live Demo:</h3>
+    <div id="script-demo">
+      <script src="/embed.js"></script>
+    </div>
+  </div>
+  
+  <div class="demo-section">
+    <h2>Method 2: iFrame</h2>
+    <p>Add this iframe to your HTML:</p>
+    <pre><code>&lt;iframe 
+  src="https://your-vercel-domain.vercel.app/embed" 
+  width="100%" 
+  height="700" 
+  frameborder="0"
+  title="Service Cost Estimate"&gt;
+&lt;/iframe&gt;</code></pre>
+    
+    <h3>Live Demo:</h3>
+    <iframe 
+      src="/embed" 
+      width="100%" 
+      height="700" 
+      frameborder="0"
+      style="border: none; display: block;"
+      title="Service Cost Estimate">
+    </iframe>
+  </div>
+  
+  <div class="demo-section">
+    <h2>For Wix Sites</h2>
+    <ol>
+      <li>In Wix Editor, click the <strong>+</strong> button to add an element</li>
+      <li>Select <strong>Embed Code</strong> → <strong>Embed HTML</strong></li>
+      <li>Paste the Script Tag or iFrame code above</li>
+      <li>Adjust the container size as needed</li>
+    </ol>
+  </div>
+</body>
+</html>
