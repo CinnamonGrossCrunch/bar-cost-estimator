@@ -129,8 +129,8 @@ export default function CostCalculatorWidget() {
             onClick={() => setOrgType('externalSponsor')}
             className={`flex-1 px-1.5 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-xs sm:text-base leading-tight ${
               orgType === 'externalSponsor'
-                ? 'bg-magenta-500/50 text-white shadow-lg border border-white/30'
-                : 'bg-magenta-200 text-gray-700 hover:bg-magenta-300'
+                ? 'bg-pink-500/50 text-white shadow-lg border border-white/30'
+                : 'bg-pink-200 text-gray-700 hover:bg-pink-300'
             }`}
             style={orgType === 'externalSponsor' ? {
               boxShadow: '0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(236, 72, 153, 0.2)'
@@ -176,7 +176,7 @@ export default function CostCalculatorWidget() {
                 ? (orgType === 'githubInternal' 
                     ? 'bg-violet-900/50 text-white shadow-lg border border-white/30'
                     : orgType === 'externalSponsor'
-                    ? 'bg-magenta-500/50 text-white shadow-lg border border-white/30'
+                    ? 'bg-pink-500/50 text-white shadow-lg border border-white/30'
                     : 'bg-teal-500/50 text-white shadow-lg border border-white/30')
                 : 'bg-white text-gray-900 hover:bg-gray-100'
             }`}
@@ -198,7 +198,7 @@ export default function CostCalculatorWidget() {
                 ? (orgType === 'githubInternal' 
                     ? 'bg-violet-900/50 text-white shadow-lg border border-white/30'
                     : orgType === 'externalSponsor'
-                    ? 'bg-magenta-500/50 text-white shadow-lg border border-white/30'
+                    ? 'bg-pink-500/50 text-white shadow-lg border border-white/30'
                     : 'bg-teal-500/50 text-white shadow-lg border border-white/30')
                 : 'bg-white text-gray-900 hover:bg-gray-100'
             }`}
