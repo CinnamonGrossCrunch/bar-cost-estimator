@@ -3,7 +3,7 @@
   'use strict';
   
   // Configuration
-  const WIDGET_URL = 'https://your-vercel-domain.vercel.app/embed';
+  const WIDGET_URL = 'https://bar-cost-estimator.vercel.app/embed';
   
   // Create container
   const container = document.currentScript?.parentElement || document.body;
