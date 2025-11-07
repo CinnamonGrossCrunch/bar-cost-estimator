@@ -201,7 +201,7 @@ export default function CostCalculatorWidget() {
   const currentOrgConfig = ORG_CONFIG[orgType];
 
   return (
-    <div className={`bg-black rounded-b-12xl p-8 relative overflow-hidden w-full min-h-auto`}>
+    <div className={`bg-black rounded-b-12xl p-12 relative overflow-hidden w-full min-h-auto`}>
       <div 
         className="absolute inset-0 rounded-b-12xl transition-all duration-700"
         style={{
