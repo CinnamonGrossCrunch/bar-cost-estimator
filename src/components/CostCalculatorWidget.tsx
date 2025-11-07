@@ -201,7 +201,7 @@ export default function CostCalculatorWidget() {
   const currentOrgConfig = ORG_CONFIG[orgType];
 
   return (
-    <div className={`bg-black rounded-b-12xl p-12 relative overflow-hidden w-full min-h-auto`}>
+    <div className={`bg-black rounded-b-12xl p-12 relative overflow-hidden w-full h-screen`}>
       <div 
         className="absolute inset-0 rounded-b-12xl transition-all duration-700"
         style={{
@@ -220,7 +220,7 @@ export default function CostCalculatorWidget() {
           filter: 'blur(0.5px)'
         }}
       ></div>
-      <div className="relative z-10">
+      <div className="relative z-10 h-full overflow-y-auto">
       <h2 className="text-3xl font-light text-white mb-4 text-center">
        Budget Estimator
       </h2>
