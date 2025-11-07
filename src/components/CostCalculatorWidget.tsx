@@ -48,7 +48,7 @@ const ORG_CONFIG = {
   nonProfit: {
     id: 'nonProfit' as OrganizationType,
     label: 'Non-Profit',
-    description: 'Events Hosted By GitHub; Sponsored by a Non-Profit Org',
+    description: 'Events Hosted By GitHub; Sponsored by a Non-Profit',
     backgroundImage: '/greencocktail.png',
     colors: {
       active: 'bg-teal-500/50',
@@ -338,7 +338,11 @@ export default function CostCalculatorWidget() {
             }
           }}
           placeholder="Enter number of attendees"
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+          className="w-full px-4 py-3 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white bg-gray-800/30 placeholder-gray-400"
+          style={{
+            MozAppearance: 'textfield'
+          }}
+          onWheel={(e) => e.currentTarget.blur()}
         />
       </div>
 
@@ -353,42 +357,54 @@ export default function CostCalculatorWidget() {
           id="duration"
           value={duration}
           onChange={(e) => setDuration(parseFloat(e.target.value))}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
+          className="duration-dropdown w-full px-4 py-3 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-800/30 text-white"
         >
           {durationOptions.map((hours) => (
-            <option key={hours} value={hours}>
+            <option key={hours} value={hours} className="duration-option text-white backdrop-blur-xl" style={{
+              background: 'rgba(0, 0, 0, 0.7)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}>
               {formatDuration(hours)}
             </option>
           ))}
         </select>
       </div>
 
-      {/* Company Name - Animated dropdown for External Sponsor and Non-Profit */}
-      <div 
-        className={`transition-all duration-500 ease-in-out overflow-hidden ${
-          requiresCompanyName ? 'max-h-32 opacity-100 mb-3' : 'max-h-0 opacity-0 mb-0'
-        }`}
-      >
-        <div className="backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
-          background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
-        }}>
-          <label htmlFor="companyName" className="block text-sm font-semibold text-gray-200 mb-2">
-            Company Name *
-          </label>
+      {/* Company Name - Always visible */}
+      <div className="mb-2 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
+        background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
+      }}>
+        <label htmlFor="companyName" className="block text-sm font-semibold text-gray-200 mb-2">
+          Company Name {requiresCompanyName ? '*' : ''}
+        </label>
+        {orgType === 'githubInternal' ? (
+          <input
+            id="companyName"
+            type="text"
+            value="GitHub Internal"
+            readOnly
+            className="w-full px-4 py-3 border border-gray-600 rounded-lg bg-gray-800/10 text-white cursor-not-allowed"
+          />
+        ) : (
           <input
             id="companyName"
             type="text"
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
             placeholder="Enter your company name"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+            className="w-full px-4 py-3 border border-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white bg-gray-800/30 placeholder-gray-400"
           />
-        </div>
+        )}
       </div>
 
       {/* Estimated Cost */}
-      <div className="backdrop-blur-md rounded-xl p-4 mb-3 text-center shadow-xl relative border border-white/20" style={{
-        background: 'linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04))'
+      <div className={`rounded-xl p-4 mb-3 text-center shadow-xl relative overflow-hidden border transition-all duration-500 ${
+        estimatedCost !== null ? 'backdrop-blur-md border-white/20' : 'border-white/10'
+      }`} style={{
+        background: estimatedCost !== null 
+          ? 'linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.04))'
+          : 'linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(255, 255, 255, 0))'
       }}>
         <div className={`text-sm font-semibold text-gray-300 mb-0 transition-all duration-700 ease-in-out transform ${
           estimatedCost !== null 
