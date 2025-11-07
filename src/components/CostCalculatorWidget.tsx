@@ -63,23 +63,32 @@ export default function CostCalculatorWidget() {
     durationOptions.push(i);
   }
 
-  // Dynamic background gradient based on organization type
-  const getBackgroundGradient = () => {
+  // Dynamic background image based on organization type
+  const getBackgroundImage = () => {
     switch (orgType) {
       case 'githubInternal':
-        return 'from-violet-900/30 to-gray-900/80';
+        return '/violet cocktail.png';
       case 'externalSponsor':
-        return 'from-blue-700/30 to-gray-900/80';
+        return '/red cocktail.png';
       case 'nonProfit':
-        return 'from-teal-300/40 to-gray-900/80';
+        return '/greencocktail.png';
       default:
-        return 'from-gray-800/50 to-gray-900/80';
+        return '/violet cocktail.png';
     }
   };
 
   return (
     <div className={`bg-black rounded-3xl shadow-2xl p-8 max-w-2xl mx-auto relative overflow-hidden`}>
-      <div className={`absolute inset-0 bg-gradient-to-b ${getBackgroundGradient()} transition-all duration-700 rounded-3xl`} style={{ filter: 'blur(0.5px)' }}></div>
+      <div 
+        className="absolute inset-0 rounded-3xl transition-all duration-700"
+        style={{
+          backgroundImage: `url("${getBackgroundImage()}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.3
+        }}
+      ></div>
       <div 
         className="absolute inset-0 rounded-3xl opacity-80"
         style={{
@@ -94,11 +103,11 @@ export default function CostCalculatorWidget() {
       </h2>
 
       {/* Organization Type */}
-      <div className="mb-3 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
+      <div className="mb-2 backdrop-blur-md rounded-xl py-2 px-4 relative overflow-hidden border border-white/10" style={{
         background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
       }}>
         <label className="block text-sm font-semibold text-gray-200 mb-2">
-          Organization Event Type:
+          Event Organizer:
         </label>
         <div className="flex gap-1 sm:gap-2">
           <button
@@ -135,7 +144,7 @@ export default function CostCalculatorWidget() {
             Non-Profit
           </button>
         </div>
-        <div className="mt-3 text-sm text-gray-300 italic text-center">
+        <div className="mt-3 text-sm text-gray-300 italic text-left">
           {orgType === 'githubInternal' && 'Events Sponsored by GitHub'}
           {orgType === 'externalSponsor' && 'Events Hosted by GitHub but Sponsored by Partner Organization'}
           {orgType === 'nonProfit' && 'Events Hosted By GitHub and Sponsored by a Non-Profit Organization'}
@@ -143,11 +152,11 @@ export default function CostCalculatorWidget() {
       </div>
 
       {/* Service Type */}
-      <div className="mb-3 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
+      <div className="mb-2 backdrop-blur-md rounded-xl p-2 relative overflow-hidden border border-white/10" style={{
         background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
       }}>
-        <label className="block text-sm font-semibold text-gray-200 mb-3">
-          Service Type *
+        <label className="block text-sm font-semibold text-gray-200 mb-1">
+          Service Type :
         </label>
         <div className="flex gap-1 sm:gap-3">
           <button
@@ -181,7 +190,7 @@ export default function CostCalculatorWidget() {
       </div>
 
       {/* Expected Attendees */}
-      <div className="mb-3 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
+      <div className="mb-2 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
         background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
       }}>
         <label htmlFor="attendees" className="block text-sm font-semibold text-gray-200 mb-2">
@@ -198,7 +207,7 @@ export default function CostCalculatorWidget() {
       </div>
 
       {/* Duration */}
-      <div className="mb-6 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
+      <div className="mb-3 backdrop-blur-md rounded-xl p-4 relative overflow-hidden border border-white/10" style={{
         background: 'linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02))'
       }}>
         <label htmlFor="duration" className="block text-sm font-semibold text-gray-200 mb-2">
