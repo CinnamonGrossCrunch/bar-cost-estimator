@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   description: "Calculate estimated event bar costs for your organization",
 };
 
-export const dynamic = 'force-dynamic';
-
 export default function RootLayout({
   children,
 }: Readonly<{
