@@ -99,7 +99,7 @@ export default function CostCalculatorWidget() {
       ></div>
       <div className="relative z-10">
       <h2 className="text-2xl font-bold text-white mb-6 text-center">
-       GDP Bar Service Cost Estimator
+       Budget Estimator
       </h2>
 
       {/* Organization Type */}
@@ -115,9 +115,12 @@ export default function CostCalculatorWidget() {
             onClick={() => setOrgType('githubInternal')}
             className={`flex-1 px-1.5 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-xs sm:text-base leading-tight ${
               orgType === 'githubInternal'
-                ? 'bg-violet-900/50 text-white shadow-md ring-2 sm:ring-4 ring-violet-300'
+                ? 'bg-violet-900/50 text-white shadow-lg border border-white/30'
                 : 'bg-violet-200 text-gray-700 hover:bg-violet-300'
             }`}
+            style={orgType === 'githubInternal' ? {
+              boxShadow: '0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)'
+            } : {}}
           >
             GitHub Internal
           </button>
@@ -126,9 +129,12 @@ export default function CostCalculatorWidget() {
             onClick={() => setOrgType('externalSponsor')}
             className={`flex-1 px-1.5 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-xs sm:text-base leading-tight ${
               orgType === 'externalSponsor'
-                ? 'bg-blue-500/50 text-white shadow-md ring-2 sm:ring-4 ring-blue-300'
+                ? 'bg-blue-500/50 text-white shadow-lg border border-white/30'
                 : 'bg-blue-200 text-gray-700 hover:bg-blue-300'
             }`}
+            style={orgType === 'externalSponsor' ? {
+              boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2)'
+            } : {}}
           >
             External Sponsor
           </button>
@@ -137,9 +143,12 @@ export default function CostCalculatorWidget() {
             onClick={() => setOrgType('nonProfit')}
             className={`flex-1 px-1.5 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-xs sm:text-base leading-tight ${
               orgType === 'nonProfit'
-                ? 'bg-teal-500/50 text-white shadow-md ring-2 sm:ring-4 ring-teal-300'
+                ? 'bg-teal-500/50 text-white shadow-lg border border-white/30'
                 : 'bg-teal-100 text-gray-700 hover:bg-teal-200'
             }`}
+            style={orgType === 'nonProfit' ? {
+              boxShadow: '0 0 20px rgba(20, 184, 166, 0.4), 0 0 40px rgba(20, 184, 166, 0.2)'
+            } : {}}
           >
             Non-Profit
           </button>
