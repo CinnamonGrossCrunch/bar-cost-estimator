@@ -173,9 +173,20 @@ export default function CostCalculatorWidget() {
             onClick={() => setServiceType('beerWine')}
             className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base leading-tight ${
               serviceType === 'beerWine'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? (orgType === 'githubInternal' 
+                    ? 'bg-violet-900/50 text-white shadow-lg border border-white/30'
+                    : orgType === 'externalSponsor'
+                    ? 'bg-blue-500/50 text-white shadow-lg border border-white/30'
+                    : 'bg-teal-500/50 text-white shadow-lg border border-white/30')
+                : 'bg-white text-gray-900 hover:bg-gray-100'
             }`}
+            style={serviceType === 'beerWine' ? (
+              orgType === 'githubInternal' 
+                ? { boxShadow: '0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)' }
+                : orgType === 'externalSponsor'
+                ? { boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2)' }
+                : { boxShadow: '0 0 20px rgba(20, 184, 166, 0.4), 0 0 40px rgba(20, 184, 166, 0.2)' }
+            ) : {}}
           >
             Beer & Wine
           </button>
@@ -184,9 +195,20 @@ export default function CostCalculatorWidget() {
             onClick={() => setServiceType('fullBar')}
             className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 rounded-lg font-medium transition-all text-sm sm:text-base leading-tight ${
               serviceType === 'fullBar'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? (orgType === 'githubInternal' 
+                    ? 'bg-violet-900/50 text-white shadow-lg border border-white/30'
+                    : orgType === 'externalSponsor'
+                    ? 'bg-blue-500/50 text-white shadow-lg border border-white/30'
+                    : 'bg-teal-500/50 text-white shadow-lg border border-white/30')
+                : 'bg-white text-gray-900 hover:bg-gray-100'
             }`}
+            style={serviceType === 'fullBar' ? (
+              orgType === 'githubInternal' 
+                ? { boxShadow: '0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)' }
+                : orgType === 'externalSponsor'
+                ? { boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2)' }
+                : { boxShadow: '0 0 20px rgba(20, 184, 166, 0.4), 0 0 40px rgba(20, 184, 166, 0.2)' }
+            ) : {}}
           >
             Full Bar
           </button>
