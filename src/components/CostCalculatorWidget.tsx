@@ -102,26 +102,32 @@ export default function CostCalculatorWidget() {
   const isFormValid = attendees > 0 && (!requiresCompanyName || companyName.trim() !== '');
 
   // Track calculation to analytics
-  const trackCalculation = async (calculationData: any) => {
+  const trackCalculation = async (calculationData: {
+    orgType: OrganizationType;
+    serviceType: ServiceType;
+    attendees: number;
+    duration: number;
+    companyName: string | null;
+    estimatedCost: number;
+  }) => {
     try {
       // In a real implementation, this would send to your analytics service
       console.log('Tracking calculation:', calculationData);
       
       // For demo purposes, we'll just log to console
       // In production, you'd send this to your database/analytics service
-      const payload = {
-        timestamp: new Date().toISOString(),
-        orgType: calculationData.orgType,
-        serviceType: calculationData.serviceType,
-        attendees: calculationData.attendees,
-        duration: calculationData.duration,
-        companyName: calculationData.companyName || null,
-        estimatedCost: calculationData.estimatedCost,
-        userAgent: navigator.userAgent,
-        // Add any other tracking data you need
-      };
       
       // Example API call (you'll need to implement your backend)
+      // const payload = {
+      //   timestamp: new Date().toISOString(),
+      //   orgType: calculationData.orgType,
+      //   serviceType: calculationData.serviceType,
+      //   attendees: calculationData.attendees,
+      //   duration: calculationData.duration,
+      //   companyName: calculationData.companyName || null,
+      //   estimatedCost: calculationData.estimatedCost,
+      //   userAgent: navigator.userAgent,
+      // };
       // await fetch('/api/track-calculation', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
@@ -178,7 +184,7 @@ export default function CostCalculatorWidget() {
   // Reset estimate when key fields change
   useEffect(() => {
     resetEstimate();
-  }, [orgType, serviceType, attendees, duration, companyName]);
+  }, [orgType, serviceType, attendees, duration, companyName, resetEstimate]);
 
   // Generate duration options from 1.0 to 6.0 hours in 0.5 increments
   const durationOptions = [];
@@ -447,7 +453,7 @@ export default function CostCalculatorWidget() {
         <p className={`transition-all duration-500 ease-in-out ${
           footerBright ? 'text-white' : 'text-gray-300'
         }`}>
-          This tool is intended for generating "ball park" estimates to aid in planning events. For official quotes, special requests or scenarios outside these parameters,
+          This tool is intended for generating &ldquo;ball park&rdquo; estimates to aid in planning events. For official quotes, special requests or scenarios outside these parameters,
           please email{' '}
           <a
             href="mailto:service@thegrossdomestic.com"
