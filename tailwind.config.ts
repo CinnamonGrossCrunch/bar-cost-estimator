@@ -12,6 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      borderRadius: {
+        '4xl': '2rem',
+        '6xl': '3rem',
+        '8xl': '4rem',
+        '12xl': '6rem',
+      },
     },
   },
   plugins: [],
