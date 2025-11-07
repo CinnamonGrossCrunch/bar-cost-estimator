@@ -5,14 +5,14 @@ import { useState, useEffect } from 'react';
 // Pricing constants and logic
 const PRICING = {
   fullBar: {
-    githubInternal: { baseRate: 75, perPerson: 8, minimum: 800 },
-    externalSponsor: { baseRate: 95, perPerson: 10, minimum: 900 },
-    nonProfit: { baseRate: 55, perPerson: 6, minimum: 800 }
+    githubInternal: { perPerson: 8, minimum: 800 },
+    externalSponsor: { perPerson: 10, minimum: 900 },
+    nonProfit: { perPerson: 8.5, minimum: 800 }
   },
   beerWine: {
-    githubInternal: { baseRate: 45, perPerson: 5, minimum: 600 },
-    externalSponsor: { baseRate: 60, perPerson: 6.5, minimum: 800 },
-    nonProfit: { baseRate: 35, perPerson: 4, minimum: 600 }
+    githubInternal: { perPerson: 6, minimum: 600 },
+    externalSponsor: { perPerson: 8, minimum: 800 },
+    nonProfit: { perPerson: 6.5, minimum: 600 }
   }
 };
 
@@ -66,9 +66,7 @@ const calculateCost = (
   duration: number
 ): number => {
   const pricing = PRICING[serviceType][orgType];
-  const baseCost = pricing.baseRate * duration;
-  const attendeeCost = pricing.perPerson * attendees * duration;
-  const calculatedCost = Math.round(baseCost + attendeeCost);
+  const calculatedCost = Math.round(pricing.perPerson * attendees * duration);
   
   // Apply minimum cost
   return Math.max(calculatedCost, pricing.minimum);
@@ -100,6 +98,18 @@ export default function CostCalculatorWidget() {
   
   // Check if all required fields are filled
   const isFormValid = attendees > 0 && (!requiresCompanyName || companyName.trim() !== '');
+  
+  // Debug logging (only when attendees change)
+  useEffect(() => {
+    console.log('Form validation state:', {
+      attendees,
+      requiresCompanyName,
+      companyName: companyName.trim(),
+      isFormValid,
+      orgType,
+      serviceType
+    });
+  }, [attendees, requiresCompanyName, companyName, isFormValid, orgType, serviceType]);
 
   // Track calculation to analytics
   const trackCalculation = async (calculationData: {
@@ -182,7 +192,7 @@ export default function CostCalculatorWidget() {
     }
   };
 
-  // Reset estimate when key fields change
+  // Reset estimate when key fields change (excluding the states we're setting)
   useEffect(() => {
     if (estimatedCost !== null) {
       setEstimatedCost(null);
@@ -190,7 +200,7 @@ export default function CostCalculatorWidget() {
     if (footerBright) {
       setFooterBright(false);
     }
-  }, [orgType, serviceType, attendees, duration, companyName, estimatedCost, footerBright]);
+  }, [orgType, serviceType, attendees, duration, companyName]);
 
   // Generate duration options from 1.0 to 6.0 hours in 0.5 increments
   const durationOptions = [];
@@ -391,7 +401,7 @@ export default function CostCalculatorWidget() {
         <div className="relative min-h-[80px] flex items-center justify-center">
           {/* Estimated Cost Display */}
           <div 
-            className={` inset-0  items-center justify-center transition-all duration-700 ease-in-out transform ${
+            className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out transform ${
               estimatedCost !== null 
                 ? 'opacity-100 scale-100 translate-y-0' 
                 : 'opacity-0 scale-95 translate-y-4'
@@ -411,11 +421,20 @@ export default function CostCalculatorWidget() {
             }`}
           >
             <button
-              onClick={handleGenerateEstimate}
-              disabled={!isFormValid || isCalculating}
+              onClick={(e) => {
+                console.log('Button clicked!', e);
+                console.log('Current form state:', { isFormValid, attendees, isCalculating });
+                if (attendees <= 0) {
+                  console.log('Setting attendees to 50 for testing');
+                  setAttendees(50);
+                  return;
+                }
+                handleGenerateEstimate();
+              }}
+              disabled={false}
               className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 ${
                 isFormValid && !isCalculating
-                  ? `${currentOrgConfig.colors.active} text-white border border-white/30 hover:scale-105`
+                  ? `${currentOrgConfig.colors.active} text-white border border-white/30 hover:brightness-150`
                   : 'bg-gray-500/50 text-gray-300 cursor-not-allowed border border-gray-500/30'
               }`}
               style={isFormValid && !isCalculating ? {
