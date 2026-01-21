@@ -7,5 +7,5 @@
 - [x] Install Required Extensions - No additional extensions needed
 - [x] Compile the Project - Dependencies installed successfully
 - [x] Create and Run Task - Development server running on port 3001
-- [x] Launch the Project - Visit http://localhost:3001 to view the widget
+- [x] Launch the Project - Visit http://localhost:3000 to view the widget
 - [x] Ensure Documentation is Complete - README.md includes deployment and embedding instructions
